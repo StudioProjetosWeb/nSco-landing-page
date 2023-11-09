@@ -1,28 +1,35 @@
-function iniciarContador(duracao, contador, botao) {
-  let timer = duracao, minutos, segundos;
-  let intervalo = setInterval(function () {
-    minutos = parseInt(timer / 60, 10);
-    segundos = parseInt(timer % 60, 10);
-
-    minutos = minutos < 10 ? "0" + minutos : minutos;
-    segundos = segundos < 10 ? "0" + segundos : segundos;
-
-    contador.textContent = minutos + ":" + segundos;
-
-    if (--timer < 0) {
-      clearInterval(intervalo);
-      contador.style.display = 'none'; // Oculta o contador
-      botao.style.display = 'block'; // Exibe o botão
-    }
-  }, 1000);
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
-window.onload = function () {
-  let duracao = 60; // 1 minuto em segundos
-  let contadorElement = document.getElementById('contador');
-  let botaoAcessar = document.getElementById('botaoAcessar');
-  iniciarContador(duracao, contadorElement, botaoAcessar);
-  botaoAcessar.onclick = function() {
-    window.location.href = 'https://www.seulink.com'; // Substitua pela URL desejada
-  };
-};
+.bg {
+  background-color: #000;
+  height: 100%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+
+.contador {
+  font-size: 4em;
+}
+
+.botao {
+  font-size: 1.2em;
+  padding: 10px 20px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  display: none; /* inicialmente oculto */
+}
+
+.botao:hover {
+  background-color: #0056b3;
+}
