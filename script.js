@@ -1,36 +1,28 @@
-function iniciarContador(contador, botao) {
-  // Verifica se já existe uma data de término armazenada
-  let fim = localStorage.getItem('fimContador');
-  if (!fim) {
-    // Define a data de término para daqui a 1 minuto
-    fim = new Date().getTime() + 60000;
-    localStorage.setItem('fimContador', fim);
+document.addEventListener('DOMContentLoaded', function () {
+  const contadorElement = document.getElementById('contador');
+  const botaoAcessar = document.getElementById('botaoAcessar');
+  const targetTime = localStorage.getItem('targetTime') || Date.now() + 20000; // 20 segundos
+  localStorage.setItem('targetTime', targetTime);
+
+  function updateCounter() {
+    const currentTime = Date.now();
+    const timeLeft = targetTime - currentTime;
+
+    if (timeLeft > 0) {
+      const seconds = Math.floor(timeLeft / 1000) % 60;
+      contadorElement.textContent = '00:' + (seconds < 10 ? '0' : '') + seconds;
+    } else {
+      clearInterval(interval);
+      localStorage.removeItem('targetTime');
+      contadorElement.style.display = 'none';
+      botaoAcessar.style.display = 'block';
+    }
   }
 
-  let intervalo = setInterval(function() {
-    let agora = new Date().getTime();
-    let distancia = fim - agora;
+  const interval = setInterval(updateCounter, 1000);
+  updateCounter(); // Chama a função imediatamente para evitar o atraso inicial de 1 segundo
 
-    let minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-    let segundos = Math.floor((distancia % (1000 * 60)) / 1000);
-
-    contador.textContent = (minutos < 10 ? '0' : '') + minutos + ":" +
-                           (segundos < 10 ? '0' : '') + segundos;
-
-    if (distancia < 0) {
-      clearInterval(intervalo);
-      contador.style.display = 'none'; // Oculta o contador
-      botao.style.display = 'block'; // Exibe o botão
-      localStorage.removeItem('fimContador'); // Limpa a data de término
-    }
-  }, 1000);
-}
-
-window.onload = function () {
-  let contadorElement = document.getElementById('contador');
-  let botaoAcessar = document.getElementById('botaoAcessar');
-  iniciarContador(contadorElement, botaoAcessar);
-  botaoAcessar.onclick = function() {
-    window.location.href = 'https://view.genial.ly/654c3a28833c7c00112cf8dc/interactive-content-projeto-demostracao'; // Substitua pela URL desejada
-  };
-};
+  botaoAcessar.addEventListener('click', function() {
+    window.location.href = 'https://view.genial.ly/654c3a28833c7c00112cf8dc/interactive-content-projeto-demostracao';
+  });
+});
