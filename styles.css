@@ -2,32 +2,27 @@ body, html {
   height: 100%;
   margin: 0;
   font-family: Arial, sans-serif;
-}
-
-.bg {
   background-color: #000;
-  height: 100%; 
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  color: white;
 }
 
-.contador {
+#contador {
   font-size: 4em;
 }
 
 .botao {
-  font-size: 1.2em;
+  display: none; /* O botão é ocultado inicialmente */
+  font-size: 1em;
   padding: 10px 20px;
+  margin-top: 20px;
   color: white;
   background-color: #007bff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  text-decoration: none;
-  display: none; /* inicialmente oculto */
 }
 
 .botao:hover {
