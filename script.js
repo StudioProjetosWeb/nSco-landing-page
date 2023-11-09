@@ -31,6 +31,6 @@ window.onload = function () {
   let botaoAcessar = document.getElementById('botaoAcessar');
   iniciarContador(contadorElement, botaoAcessar);
   botaoAcessar.onclick = function() {
-    window.location.href = 'https://www.seulink.com'; // Substitua pela URL desejada
+    window.location.href = 'https://view.genial.ly/654c3a28833c7c00112cf8dc/interactive-content-projeto-demostracao'; // Substitua pela URL desejada
   };
 };
