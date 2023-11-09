@@ -1,8 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
   const contadorElement = document.getElementById('contador');
   const botaoAcessar = document.getElementById('botaoAcessar');
-  const targetTime = localStorage.getItem('targetTime') || Date.now() + 20000; // 20 segundos
-  localStorage.setItem('targetTime', targetTime);
+  const urlDestino = 'https://view.genial.ly/654c3a28833c7c00112cf8dc/interactive-content-projeto-demostracao';
+  
+  let targetTime = localStorage.getItem('targetTime');
+  if (!targetTime) {
+    targetTime = Date.now() + 20000; // 20 segundos
+    localStorage.setItem('targetTime', targetTime);
+  }
 
   function updateCounter() {
     const currentTime = Date.now();
@@ -23,6 +28,12 @@ document.addEventListener('DOMContentLoaded', function () {
   updateCounter(); // Chama a função imediatamente para evitar o atraso inicial de 1 segundo
 
   botaoAcessar.addEventListener('click', function() {
-    window.location.href = 'https://view.genial.ly/654c3a28833c7c00112cf8dc/interactive-content-projeto-demostracao';
+    window.location.href = urlDestino;
+    localStorage.setItem('redirected', 'true'); // Define um estado que impede o retorno ao contador
   });
+
+  // Checa se o usuário já foi redirecionado anteriormente e mantém no link externo
+  if (localStorage.getItem('redirected')) {
+    window.location.href = urlDestino;
+  }
 });
