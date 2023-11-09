@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   const contadorElement = document.getElementById('contador');
   const botaoAcessar = document.getElementById('botaoAcessar');
-  const urlDestino = 'https://view.genial.ly/654c3a28833c7c00112cf8dc/interactive-content-projeto-demostracao';
+  const urlDestino = 'https://www.instagram.com/nsco.ag/';
   
   let targetTime = localStorage.getItem('targetTime');
   if (!targetTime) {
